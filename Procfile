@@ -1,1 +1,1 @@
-web: gunicorn nex_ecom.wsgi:application
+web: gunicorn SAS_proj.wsgi:application
