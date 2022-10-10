@@ -1,10 +1,6 @@
-from django.shortcuts import render
+from rest_framework import generics
+from . import models, serializers
 
-# Create your views here.
-
-def Login(request):
-    pass
-def Logout(request):
-    pass
-def SignUp(request):
-    pass
+class UserDetails(generics.GenericAPIView):
+    queryset = models.User
+    serializer_class = serializers.UserSerializer 

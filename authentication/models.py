@@ -5,7 +5,8 @@ from django.contrib.auth.models import AbstractUser
 SPECIALIZATION = (
     ('R', 'Rent'),
     ('S', 'Sell'),
-    ('B', 'Sell & Rent')
+    ('B', 'Sell & Rent'),
+    ('C', 'Customer')
 )
 
 class User(AbstractUser):
@@ -14,5 +15,6 @@ class User(AbstractUser):
     state_of_origin = models.CharField(max_length=25)
     business_state = models.CharField(max_length=25)
     local_govt = models.CharField(max_length=25)
-    specialization = models.CharField(choices=SPECIALIZATION, max_length=1)
-    
+    specialization = models.CharField(choices=SPECIALIZATION, max_length=1, default='C')
+    is_landlord = models.BooleanField(default=False)
+    is_admin = models.BooleanField(default=False)
