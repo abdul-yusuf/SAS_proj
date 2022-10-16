@@ -77,4 +77,12 @@ class Coupon(models.Model):
         return self.code
 
 class Viewed(models.Model):
-    product = models.ManyToManyField('marchant.Product')    
+    user = models.ForeignKey('authentication.User',
+                            on_delete=models.CASCADE, blank=True, null=True)
+    product = models.ManyToManyField('marchant.Product')
+    times = models.PositiveSmallIntegerField()
+
+class BookMarked(models.Model):
+    user = models.ForeignKey('authentication.User',
+                            on_delete=models.CASCADE, blank=True, null=True)
+    product = models.ManyToManyField('marchant.Product')
