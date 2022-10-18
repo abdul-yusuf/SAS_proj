@@ -1,7 +1,3 @@
-from email.policy import default
-from itertools import product
-from random import randint
-from turtle import title
 from django.db import models
 
 # Create your models here.
