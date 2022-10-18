@@ -1,1 +1,1 @@
-web: gunicorn SAS_proj.wsgi --log-file-
+web: gunicorn SAS_proj.wsgi:application
