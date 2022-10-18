@@ -1,7 +1,7 @@
 Django==3.1
 django-rest-swagger==2.2.0
 djangorestframework==3.12
-django-allauth==0.15.0
+django-allauth
 django-rest-auth==0.9.5
 drf-yasg==1.21.3  
 pillow==9.2
