@@ -28,7 +28,7 @@ class Product(models.Model):
     value = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True)
     images = models.ForeignKey('Images', on_delete=models.CASCADE, blank=True, null=True)
     rating = models.OneToOneField('Rating', on_delete=models.CASCADE, blank=False, null=True)
-    review = models.ManyToManyField('Reviews', blank=True)
+    # review = models.ManyToManyField('Reviews', blank=True)
     
     @property
     def rate(self):
@@ -52,47 +52,6 @@ class Rating(models.Model):
     rate5 = models.IntegerField(default=1)
     
 
-# class Reviews(models.Model):
-#     body = models.TextField(max_length=150)
-#     user = models.ForeignKey('authentication.User', on_delete=models.SET_NULL, blank=True, null=True)
-#     rating = models.ForeignKey('Rating', on_delete=models.CASCADE, blank=True, null=True)
-
-#     @property
-#     def rate(self):
-#         rate = 1 
-#         if self.rating.rate1>rate:
-#             rate = self.rating.rate1
-#         elif self.rating.rate2>rate:
-#             rate = self.rating.rate2
-#         elif self.rating.rate3>rate:
-#             rate = self.rating.rate3
-#         elif self.rating.rate4>rate:
-#             rate = self.rating.rate4
-#         elif self.rating.rate5>rate:
-#             rate = self.rating.rate5
-#         return rate
-
-# class SubProduct(models.Model):
-#     """
-#     A sub category of product i.e room1, room2, room3 of product1
-#     """
-#     title = models.CharField(max_length=50)
-#     description = models.CharField(max_length=150)
-#     value = models.DecimalField(max_digits=15, decimal_places=2)
-#     images = models.ManyToManyField('Images', blank=True)
-#     rating = models.OneToOneField('Rating', on_delete=models.AutoField, blank=False, null=True)
-    
-#     @property
-#     def rate(self):
-#         ratex = self.rating
-#         summ = ratex.rate1+ratex.rate2*2+ratex.rate3*3+ratex.rate4*4+ratex.rate5*5
-#         sumz = ratex.rate1+ratex.rate2+ratex.rate3+ratex.rate4+ratex.rate5
-#         rates = summ/sumz
-#         return int(rates)
-
-#     def __str__(self):
-#         return self.title
-
 class Images(models.Model):
     image1 = models.ImageField()
     image2 = models.ImageField(blank=True, null=True)
@@ -102,6 +61,7 @@ class Images(models.Model):
 
 class Review(models.Model):
     user = models.ForeignKey('authentication.User', on_delete=models.CASCADE, blank=True, null=True)
+    product = models.ForeignKey('Product', on_delete=models.CASCADE, blank=True, null=True)
     body = models.TextField()
     reply = models.ForeignKey('ReviewReply', on_delete=models.CASCADE, blank=True, null=True)
     rating = models.ForeignKey('Rating', on_delete=models.CASCADE, blank=True, null=True)

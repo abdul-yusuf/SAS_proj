@@ -1,4 +1,3 @@
-from dataclasses import field, fields
 from rest_framework import serializers
 
 from marchant.functions import attempt_json_deserialize
@@ -27,12 +26,14 @@ class ImageSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ProductSerializer(serializers.ModelSerializer):
-    review = serializers.PrimaryKeyRelatedField(queryset=models.Review.objects.all(), many=True)
+    review_set = serializers.PrimaryKeyRelatedField(queryset=models.Review.objects.all(), many=True)
+    # review = ReviewSerializer(read_only=True)
     rating = RatingSerializer(read_only=True)
     images = ImageSerializer(read_only=True)
     class Meta:
         model = models.Product
-        fields = ('id','title','category','timeframe','size','value','images','rating','review','rate')
+        fields = ('id','title','category','timeframe','size','value','images','rating','review_set','rate')
+        dept = 1
     def create(self, validated_data):
         request = self.context['request']
 
