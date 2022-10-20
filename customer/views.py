@@ -21,3 +21,17 @@ class AddItemToCart(viewsets.ModelViewSet):
     # def post(self, request):
 
 
+class Payment_Create(generics.CreateAPIView):
+    queryset = models.Payment.objects.all()
+    serializer_class = serializers.PaymentSerializer
+
+class Payment_verify(generics.RetrieveAPIView):
+    queryset = models.Payment.objects.all()
+    serializer_class = serializers.PaymentSerializer
+class Payment_RUD(generics.RetrieveAPIView):
+    queryset = models.Payment.objects.all()
+    serializer_class = serializers.PaymentSerializer
+
+class CouponCRUD(viewsets.ModelViewSet):
+    queryset = models.Coupon.objects.all()
+    serializer_class = serializers.CouponSerializer
